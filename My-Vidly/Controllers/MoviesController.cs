@@ -71,10 +71,15 @@ namespace My_Vidly.Controllers
                 };
                 return View("MovieForm", viewModel);
             }
+
             if (movie.Id == 0)
-                _context.Movies.Add(movie);
-            else
             {
+                movie.NumberAvailable = movie.InStock;
+                _context.Movies.Add(movie);
+            }
+        else
+
+        {
                 var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
                 movieInDb.Name = movie.Name;
                 movieInDb.Genre = movie.Genre;
@@ -82,6 +87,7 @@ namespace My_Vidly.Controllers
                 movieInDb.ReleaseDate= movie.ReleaseDate;
                 movieInDb.ReleaseDate= movie.ReleaseDate;
                 movieInDb.InStock= movie.InStock;
+                movieInDb.NumberAvailable = movie.InStock;
 
 
             }

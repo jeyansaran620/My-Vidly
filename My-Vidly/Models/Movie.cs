@@ -27,6 +27,8 @@ namespace My_Vidly.Models
         [Range(1,20)]
         public int InStock { get; set; }
 
+        public int NumberAvailable { get; set; }
+
     }
 
 }

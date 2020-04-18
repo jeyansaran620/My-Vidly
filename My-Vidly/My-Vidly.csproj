@@ -199,14 +199,17 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\CustomersController.cs" />
     <Compile Include="Controllers\api\MoviesController.cs" />
+    <Compile Include="Controllers\api\NewRentalsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\RentalsController.cs" />
     <Compile Include="DtoS\CustomerDto.cs" />
     <Compile Include="DtoS\GenreTypeDto.cs" />
     <Compile Include="DtoS\MembershipTypeDto.cs" />
     <Compile Include="DtoS\MovieDto.cs" />
+    <Compile Include="DtoS\NewRentalDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -279,6 +282,22 @@
     <Compile Include="Migrations\202004171625128_seedUsers.Designer.cs">
       <DependentUpon>202004171625128_seedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004180624503_AddedRentals.cs" />
+    <Compile Include="Migrations\202004180624503_AddedRentals.Designer.cs">
+      <DependentUpon>202004180624503_AddedRentals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004180637211_AddedNumberAvailableToMovies.cs" />
+    <Compile Include="Migrations\202004180637211_AddedNumberAvailableToMovies.Designer.cs">
+      <DependentUpon>202004180637211_AddedNumberAvailableToMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004180638242_FixAddedNumberAvailableToMovies.cs" />
+    <Compile Include="Migrations\202004180638242_FixAddedNumberAvailableToMovies.Designer.cs">
+      <DependentUpon>202004180638242_FixAddedNumberAvailableToMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004180828046_MovieDataTypeChanged.cs" />
+    <Compile Include="Migrations\202004180828046_MovieDataTypeChanged.Designer.cs">
+      <DependentUpon>202004180828046_MovieDataTypeChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -288,6 +307,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -409,15 +429,22 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -493,6 +520,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -534,6 +567,7 @@
     <Content Include="Views\Movies\MovieForm.cshtml" />
     <Content Include="Views\Movies\ReadOnlyViewIndex.cshtml" />
     <Content Include="Views\Customers\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Rentals\NewRentalForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -602,6 +636,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004171625128_seedUsers.resx">
       <DependentUpon>202004171625128_seedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004180624503_AddedRentals.resx">
+      <DependentUpon>202004180624503_AddedRentals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004180637211_AddedNumberAvailableToMovies.resx">
+      <DependentUpon>202004180637211_AddedNumberAvailableToMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004180638242_FixAddedNumberAvailableToMovies.resx">
+      <DependentUpon>202004180638242_FixAddedNumberAvailableToMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004180828046_MovieDataTypeChanged.resx">
+      <DependentUpon>202004180828046_MovieDataTypeChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

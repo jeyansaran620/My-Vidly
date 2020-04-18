@@ -26,5 +26,7 @@ namespace My_Vidly.DtoS
 
         [Range(1, 20)]
         public int InStock { get; set; }
+
+        public int NumberAvailable { get; set; }
     }
 }
